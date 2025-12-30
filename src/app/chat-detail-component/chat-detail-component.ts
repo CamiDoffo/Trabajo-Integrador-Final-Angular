@@ -4,49 +4,49 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ChatService } from '../service/chat';
 import { Chat } from '../../interfaces/chat';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
+import { FechaPipe } from '../pipes/fecha-pipe';
 
 @Component({
   selector: 'app-chat-detail-component',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, FechaPipe],
   templateUrl: './chat-detail-component.html',
   styleUrl: './chat-detail-component.css',
 })
 export class ChatDetailComponent {
-  chatSignal!: Signal<Chat | undefined>
-  newText = ''
-  private id?: string
+
+  newText = '';
+
+
+  chatSignal: Signal<Chat | undefined>;
+router: any;
 
   constructor(
     private route: ActivatedRoute,
     private chatService: ChatService
   ) {
+    const chatIdSignal = toSignal(
+      this.route.paramMap.pipe(
+        map(params => params.get('id'))
+      )
+    );
 
-  }
-
-  ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id') ?? undefined
-    if (this.id) {
-      this.chatSignal = this.chatService.getChatSignal(this.id)
-    }
-    else {
-      this.chatSignal = computed(() => undefined)
-    }
+    this.chatSignal = computed(() => {
+      const id = chatIdSignal();
+      return id ? this.chatService.getChatSignal(id)() : undefined;
+    });
   }
 
   send() {
-    if (!this.id || this.newText.trim()) {
-      return
-    }
-    this.chatService.sendMessage(this.id, this.newText.trim(), true)
-    this.newText = ''
+    const chat = this.chatSignal();
+    if (!chat || !this.newText.trim()) return;
+
+    this.chatService.sendMessage(chat.id, this.newText.trim(), true);
+    this.newText = '';
   }
 
   formatDate(date: string) {
-    if (!date) {
-      return ''
-    }
-    const datetime = new Date(date)
-    return datetime.toLocaleString()
+    return date ? new Date(date).toLocaleString() : '';
   }
-
 }

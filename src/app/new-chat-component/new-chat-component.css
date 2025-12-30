@@ -1,20 +1,74 @@
-form {
-  max-width: 400px;
-  margin: 20px auto;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+:host {
+  display: block;
+  padding: 24px;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
 }
 
+/* Título */
+h2 {
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Labels */
 label {
   display: flex;
   flex-direction: column;
-  font-weight: bold;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
 }
 
+/* Inputs */
 input {
-  margin-top: 5px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  margin-top: 6px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-soft);
+  background-color: var(--bg-input);
+  color: var(--text-primary);
+  outline: none;
+}
+
+input:focus {
+  border-color: var(--accent);
+}
+
+/* Botones */
+div {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+button {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Enviar */
+button[type="submit"] {
+  background-color: var(--accent);
+  color: #0b141a;
+}
+
+/* Cancelar */
+button[type="button"] {
+  background-color: transparent;
+  color: var(--text-secondary);
+}
+
+button[type="button"]:hover {
+  color: var(--text-primary);
 }

@@ -1,0 +1,56 @@
+/* Contenedor principal para ocupar toda la pantalla */
+.app-container {
+  display: flex;
+  /* Uso de Flexbox solicitado  */
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* Panel Lateral Izquierdo */
+.sidebar {
+  flex: 0 0 350px;
+  /* Ancho fijo de 350px en escritorio */
+  border-right: 1px solid var(--border-soft);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Panel Principal Derecho  */
+.main-content {
+  flex: 1;
+  /* Ocupa el espacio restante */
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  /* height: 100vh; */
+}
+
+@media (max-width: 768px) {
+
+  .app-container {
+    flex-direction: row;
+  }
+
+  /* ESTADO BASE: solo sidebar */
+  .main-content {
+    display: none;
+  }
+
+  .sidebar {
+    flex: 1;
+    width: 100%;
+  }
+
+  /* CUANDO HAY CHAT ABIERTO */
+  .app-container.chat-open .sidebar {
+    display: none;
+  }
+
+  .app-container.chat-open .main-content {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    min-height: 0;
+  }
+}

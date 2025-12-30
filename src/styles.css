@@ -1,3 +1,11 @@
+html, body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    height: 100%;
+    margin: 0;
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+}
+
 /* Layout principal */
 .app-container {
     display: flex;
@@ -15,6 +23,8 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    min-height: 0;
+    /* MUY IMPORTANTE */
 }
 
 /* Media Query para móviles */
@@ -22,13 +32,47 @@
     .app-container {
         flex-direction: column;
     }
-    
+
     /* Si la ruta es /chats/:id, podrías ocultar el sidebar con una clase */
     .sidebar {
         width: 100%;
     }
-    
+
     .main-content {
         width: 100%;
     }
+}
+
+app-chat-detail-component {
+    align-content: stretch;
+    height: 100%;
+}
+
+button {
+    border-width: thin;
+    background-color: var(--accent);
+    color: #0b141a;
+    border-radius: 50%;
+}
+
+
+:root {
+    --bg-app: #0f172a;
+    /* Fondo general */
+    --bg-chat: #0b141a;
+    /* Fondo conversación */
+    --bg-header: #111b21;
+    /* Header */
+    --bg-input: #111b21;
+
+    --border-soft: #1f2a33;
+
+    --bubble-other: #1e2a30;
+    --bubble-me: #005c4b;
+
+    --text-primary: #e9edef;
+    --text-secondary: #8696a0;
+
+    --accent: #25d366;
+    /* Verde WhatsApp */
 }

@@ -1,31 +1,33 @@
 @if(chatSignal()){
-    <header class="chat-header">
-        <div class="header-info">
-            <h2>{{chatSignal()?.name}}</h2>
-            <span>{{chatSignal()?.messages?.length}} mensajes</span>
-        </div>
-    </header>
-
-    <div class="message-history">
-        @for(message of chatSignal()?.messages ?? []; track message.id){
-            <div class="message-wrapper" [class.from-me]="message.fromMe">
-                <div class="bubble">
-                    <p>{{message.text}}</p>
-                    <small class="message-date">{{formatDate(message.date)}}</small>
-                </div>
-            </div>
-        }
-        @empty {
-            <div class="empty-chat">No hay mensajes aún</div>
-        }
+<header class="chat-header">
+    <div class="header-info">
+        <h2>{{chatSignal()?.name}}</h2>
     </div>
+</header>
 
+<div class="message-history">
+    @for(message of chatSignal()?.messages ?? []; track message.id){
+    <div class="message-wrapper" [class.from-me]="message.fromMe">
+        <div class="bubble">
+            <p>{{message.text}}</p>
+            <small class="message-date">{{ message.date | Fecha}}</small>
+        </div>
+    </div>
+    }
+    @empty {
+    <div class="empty-chat">
+        <p>No hay mensajes aún</p>
+    </div>
+    }
+</div>
+<div class="message-div">
     <form class="message-form" (ngSubmit)="send()">
-        <input [(ngModel)]="newText" name="text" placeholder="Escribe un mensaje" required/>
+        <input [(ngModel)]="newText" name="text" placeholder="Escribe un mensaje" required />
         <button type="submit">Enviar</button>
     </form>
+</div>
 } @else {
-    <div class="not-found">
-        <h2>Selecciona un contacto para chatear</h2>
-    </div>
+<div class="not-found">
+    <h3>Selecciona un contacto para chatear</h3>
+</div>
 }

@@ -23,7 +23,6 @@ export class NewChatComponent {
     if(!this.name.trim()){
       return
     }
-    console.log(this.name)
     const chat = this.chatService.createChat(this.name.trim())
     if(this.initial.trim()){
       this.chatService.sendMessage(chat.id, this.initial.trim(), true)

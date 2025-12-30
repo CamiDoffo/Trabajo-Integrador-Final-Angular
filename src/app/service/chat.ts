@@ -31,6 +31,25 @@ export class ChatService {
             text: 'Que tal?', 
             fromMe: true, 
             date: now
+          },
+          {
+            id: '3',
+            text: 'Todo bien, vos?',
+            fromMe: false,
+            date: now
+          }
+        ]
+      },
+      {
+        id: '2',
+        name: 'Camila',
+        lastMessage: 'Chauuu',
+        messages: [
+          {
+            id: '1',
+            text: 'Chauuu',
+            fromMe: false,
+            date: now
           }
         ]
       }
@@ -95,7 +114,17 @@ export class ChatService {
         )
       }
     )
+    if(fromMe){
+      setTimeout(() => this.automaticResponse(chat_id), 1000)
+    }
+
+
     return new_message
   }
+
+  automaticResponse(chat_id: string){
+    this.sendMessage(chat_id, 'Automatic Response!', false)
+  }
+
 
 }
