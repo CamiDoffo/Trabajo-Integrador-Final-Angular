@@ -1,9 +1,9 @@
-<div class="app-container">
+<div class="app-container" [class.chat-open]="chatOpen">
   <aside class="sidebar">
-    <app-root></app-root>
+    <app-chat-component/>
   </aside>
 
   <main class="main-content">
-    <router-outlet></router-outlet>
+    <router-outlet/>
   </main>
 </div>

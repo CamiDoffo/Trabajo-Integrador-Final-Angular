@@ -1,5 +1,8 @@
 @if(chatSignal()){
 <header class="chat-header">
+    <button class="back" (click)="router.navigate(['/chats'])">
+        ←
+    </button>
     <div class="header-info">
         <h2>{{chatSignal()?.name}}</h2>
     </div>

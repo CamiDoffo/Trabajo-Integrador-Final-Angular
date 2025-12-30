@@ -20,7 +20,7 @@ export class ChatDetailComponent {
 
 
   chatSignal: Signal<Chat | undefined>;
-router: any;
+  router: any;
 
   constructor(
     private route: ActivatedRoute,
