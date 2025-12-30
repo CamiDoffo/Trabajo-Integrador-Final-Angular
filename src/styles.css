@@ -1,1 +1,34 @@
-/* You can add global styles to this file, and also import other style files */
+/* Layout principal */
+.app-container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 350px;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Media Query para móviles */
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+    }
+    
+    /* Si la ruta es /chats/:id, podrías ocultar el sidebar con una clase */
+    .sidebar {
+        width: 100%;
+    }
+    
+    .main-content {
+        width: 100%;
+    }
+}

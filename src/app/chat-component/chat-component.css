@@ -1,0 +1,39 @@
+section {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+header {
+  padding: 1rem;
+  background: #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+li:hover {
+  background-color: #e9e9e9;
+}
+
+li div:first-child {
+  font-weight: bold;
+}
+
+li div:last-child {
+  font-size: 0.85rem;
+  color: #666;
+}

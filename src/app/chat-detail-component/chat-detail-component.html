@@ -1,0 +1,31 @@
+@if(chatSignal()){
+    <header class="chat-header">
+        <div class="header-info">
+            <h2>{{chatSignal()?.name}}</h2>
+            <span>{{chatSignal()?.messages?.length}} mensajes</span>
+        </div>
+    </header>
+
+    <div class="message-history">
+        @for(message of chatSignal()?.messages ?? []; track message.id){
+            <div class="message-wrapper" [class.from-me]="message.fromMe">
+                <div class="bubble">
+                    <p>{{message.text}}</p>
+                    <small class="message-date">{{formatDate(message.date)}}</small>
+                </div>
+            </div>
+        }
+        @empty {
+            <div class="empty-chat">No hay mensajes aún</div>
+        }
+    </div>
+
+    <form class="message-form" (ngSubmit)="send()">
+        <input [(ngModel)]="newText" name="text" placeholder="Escribe un mensaje" required/>
+        <button type="submit">Enviar</button>
+    </form>
+} @else {
+    <div class="not-found">
+        <h2>Selecciona un contacto para chatear</h2>
+    </div>
+}
