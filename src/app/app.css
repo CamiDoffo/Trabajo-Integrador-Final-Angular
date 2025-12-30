@@ -30,16 +30,17 @@
 
   .app-container {
     flex-direction: row;
+    height: 100vh;
   }
 
-  /* ESTADO BASE: solo sidebar */
+  /* ESTADO BASE: SOLO LISTA */
   .main-content {
-    display: none;
+    flex: 1;
+    width: 100%;
   }
 
   .sidebar {
-    flex: 1;
-    width: 100%;
+    display: none;
   }
 
   /* CUANDO HAY CHAT ABIERTO */
@@ -54,3 +55,4 @@
     min-height: 0;
   }
 }
+

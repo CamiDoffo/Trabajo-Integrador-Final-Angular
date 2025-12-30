@@ -137,3 +137,14 @@
     min-height: 0;
     /* MUY IMPORTANTE */
 }
+
+.back {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .back {
+    display: inline;
+    margin-right: 8px;
+  }
+}
